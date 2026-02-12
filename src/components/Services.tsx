@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { MotionDiv } from "@/components/ui/motion-wrapper";
 import { Bath, Wrench, Paintbrush, Lightbulb, Droplets, LayoutGrid, ArrowRight } from "lucide-react";
 
 const services = [
@@ -40,7 +38,7 @@ const Services = () => {
   return (
     <section id="services" className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -55,11 +53,11 @@ const Services = () => {
           <p className="text-muted-foreground mt-3 max-w-lg mx-auto text-sm leading-relaxed">
             From design to completion, we cover every aspect of your bathroom renovation.
           </p>
-        </motion.div>
+        </MotionDiv>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service, i) => (
-            <motion.div
+            <MotionDiv
               key={service.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -79,7 +77,7 @@ const Services = () => {
               <span className="inline-flex items-center gap-1 text-xs font-medium text-gold opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
                 Learn more <ArrowRight className="w-3 h-3" />
               </span>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
       </div>

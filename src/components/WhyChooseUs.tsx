@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { MotionDiv } from "@/components/ui/motion-wrapper";
 import { ShieldCheck, DollarSign, Palette, HeartHandshake, Timer, Sparkles } from "lucide-react";
 
 const reasons = [
@@ -40,7 +38,7 @@ const WhyChooseUs = () => {
   return (
     <section className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -55,11 +53,11 @@ const WhyChooseUs = () => {
           <p className="text-muted-foreground mt-3 max-w-lg mx-auto text-sm leading-relaxed">
             We don't just renovate bathrooms — we deliver peace of mind.
           </p>
-        </motion.div>
+        </MotionDiv>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {reasons.map((reason, i) => (
-            <motion.div
+            <MotionDiv
               key={reason.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +74,7 @@ const WhyChooseUs = () => {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {reason.description}
               </p>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
       </div>

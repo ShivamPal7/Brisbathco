@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { MotionDiv } from "@/components/ui/motion-wrapper";
 import {
   Accordion,
   AccordionContent,
@@ -40,7 +38,7 @@ const FAQ = () => {
     <section id="faq" className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -63,9 +61,9 @@ const FAQ = () => {
             >
               Still have questions? Contact us →
             </a>
-          </motion.div>
+          </MotionDiv>
 
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -83,7 +81,7 @@ const FAQ = () => {
                 </AccordionItem>
               ))}
             </Accordion>
-          </motion.div>
+          </MotionDiv>
         </div>
       </div>
     </section>

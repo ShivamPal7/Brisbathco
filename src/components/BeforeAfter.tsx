@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import beforeImg from "@/assets/before-bathroom.jpg";
 import afterImg from "@/assets/after-bathroom.jpg";
 
@@ -64,10 +65,14 @@ const BeforeAfter = () => {
             onTouchEnd={handleMouseUp}
           >
             {/* After image (full background) */}
-            <img
-              src={afterImg.src}
+            <Image
+              src={afterImg}
               alt="Bathroom after renovation"
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              sizes="(max-width: 1024px) 100vw, 896px"
+              className="object-cover"
+              loading="lazy"
+              placeholder="blur"
             />
 
             {/* Before image (clipped) */}
@@ -75,11 +80,15 @@ const BeforeAfter = () => {
               className="absolute inset-0 overflow-hidden"
               style={{ width: `${sliderPosition}%` }}
             >
-              <img
-                src={beforeImg.src}
+              <Image
+                src={beforeImg}
                 alt="Bathroom before renovation"
-                className="absolute inset-0 w-full h-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 896px"
+                className="object-cover"
                 style={{ width: containerRef.current?.offsetWidth || "100%", maxWidth: "none" }}
+                loading="lazy"
+                placeholder="blur"
               />
             </div>
 

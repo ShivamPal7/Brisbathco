@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { MotionDiv } from "@/components/ui/motion-wrapper";
 import { MapPin, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -30,7 +28,7 @@ const ServiceAreas = () => {
     <section id="service-areas" className="py-20 lg:py-28 bg-muted/40">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -48,11 +46,11 @@ const ServiceAreas = () => {
             Based in Carrindale, we service suburbs within a 20–30 km radius across Brisbane's south side.
             Premium bathroom renovations, delivered locally.
           </p>
-        </motion.div>
+        </MotionDiv>
 
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           {/* Suburb List */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -63,7 +61,7 @@ const ServiceAreas = () => {
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2.5">
               {suburbs.map((suburb, i) => (
-                <motion.div
+                <MotionDiv
                   key={suburb.slug}
                   initial={{ opacity: 0, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +75,7 @@ const ServiceAreas = () => {
                     <ArrowRight className="w-3 h-3 text-gold opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                     <span>{suburb.name}</span>
                   </Link>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
 
@@ -88,10 +86,10 @@ const ServiceAreas = () => {
                 From design to completion, we bring premium craftsmanship to your suburb.
               </p>
             </div>
-          </motion.div>
+          </MotionDiv>
 
           {/* Map */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -115,7 +113,7 @@ const ServiceAreas = () => {
                 Centred on Carrindale — 20–30 km service radius
               </span>
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       </div>
     </section>

@@ -1,6 +1,5 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { MotionDiv } from "@/components/ui/motion-wrapper";
+import Image from "next/image";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -18,7 +17,7 @@ const Gallery = () => {
   return (
     <section id="gallery" className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -33,11 +32,11 @@ const Gallery = () => {
           <p className="text-muted-foreground mt-3 max-w-lg mx-auto text-sm leading-relaxed">
             Every bathroom we create is a testament to craftsmanship and attention to detail.
           </p>
-        </motion.div>
+        </MotionDiv>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
           {images.map((img, i) => (
-            <motion.div
+            <MotionDiv
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -45,21 +44,23 @@ const Gallery = () => {
               transition={{ delay: i * 0.1, duration: 0.5 }}
               className="relative aspect-square overflow-hidden rounded-sm group cursor-pointer"
             >
-              <img
-                src={img.src.src}
+              <Image
+                src={img.src}
                 alt={img.alt}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                 <p className="text-sm font-medium text-cream">{img.label}</p>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
 
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -72,7 +73,7 @@ const Gallery = () => {
             Want to see more? Let's talk about your project
             <ArrowRight className="w-4 h-4" />
           </a>
-        </motion.div>
+        </MotionDiv>
       </div>
     </section>
   );

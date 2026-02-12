@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowRight, Play } from "lucide-react";
 import heroImage from "@/assets/hero-bathroom.jpg";
 
@@ -8,14 +9,22 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <motion.img
+        <motion.div
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          src={heroImage.src}
-          alt="Luxury bathroom renovation in Brisbane"
-          className="w-full h-full object-cover"
-        />
+          className="w-full h-full"
+        >
+          <Image
+            src={heroImage}
+            alt="Luxury bathroom renovation in Brisbane"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+            placeholder="blur"
+          />
+        </motion.div>
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/60 to-foreground/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
       </div>

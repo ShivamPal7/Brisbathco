@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { MotionDiv } from "@/components/ui/motion-wrapper";
 import { ArrowRight, Phone } from "lucide-react";
 
 import { CONTACT_DETAILS } from "@/constants";
@@ -17,7 +15,7 @@ const CTABanner = () => {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -46,7 +44,7 @@ const CTABanner = () => {
               Call {CONTACT_DETAILS.phone.display}
             </a>
           </div>
-        </motion.div>
+        </MotionDiv>
       </div>
     </section>
   );

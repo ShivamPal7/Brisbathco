@@ -1,21 +1,26 @@
+import dynamic from "next/dynamic";
+
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
 import Services from "@/components/Services";
-import BeforeAfter from "@/components/BeforeAfter";
-import Process from "@/components/Process";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import Gallery from "@/components/Gallery";
-import Reviews from "@/components/Reviews";
-import CTABanner from "@/components/CTABanner";
-import FAQ from "@/components/FAQ";
-import Contact from "@/components/Contact";
-import ServiceAreas from "@/components/ServiceAreas";
+import Process from "@/components/Process";
 import Footer from "@/components/Footer";
+
+const BeforeAfter = dynamic(() => import("@/components/BeforeAfter"));
+const Gallery = dynamic(() => import("@/components/Gallery"));
+const Reviews = dynamic(() => import("@/components/Reviews"));
+const CTABanner = dynamic(() => import("@/components/CTABanner"));
+const FAQ = dynamic(() => import("@/components/FAQ"));
+const Contact = dynamic(() => import("@/components/Contact"));
+const ServiceAreas = dynamic(() => import("@/components/ServiceAreas"));
+
+export const revalidate = false; // Static rendering
 
 export default function Home() {
   return (
-    <main className="scroll-smooth">
+    <>
       <Navbar />
       <Hero />
       <TrustBar />
@@ -25,11 +30,11 @@ export default function Home() {
       <Process />
       <Gallery />
       <Reviews />
-      <ServiceAreas />
-      <FAQ />
       <CTABanner />
+      <FAQ />
       <Contact />
+      <ServiceAreas />
       <Footer />
-    </main>
+    </>
   );
 }

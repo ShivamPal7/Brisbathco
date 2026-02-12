@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { MotionDiv } from "@/components/ui/motion-wrapper";
 import { Star, Quote } from "lucide-react";
 
 const reviews = [
@@ -28,7 +26,7 @@ const Reviews = () => {
   return (
     <section id="reviews" className="py-20 lg:py-28 bg-muted">
       <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -45,11 +43,11 @@ const Reviews = () => {
           <p className="text-sm text-muted-foreground mt-2">
             4.9 stars from 120+ verified Google Reviews
           </p>
-        </motion.div>
+        </MotionDiv>
 
         <div className="grid md:grid-cols-3 gap-5">
           {reviews.map((review, i) => (
-            <motion.div
+            <MotionDiv
               key={review.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +72,7 @@ const Reviews = () => {
                   {review.location}, Brisbane
                 </p>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
       </div>

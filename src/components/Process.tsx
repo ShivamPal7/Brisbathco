@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { MotionDiv } from "@/components/ui/motion-wrapper";
 import { MessageSquare, PenTool, Hammer, CheckCircle2 } from "lucide-react";
 
 const steps = [
@@ -42,7 +40,7 @@ const Process = () => {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -59,12 +57,12 @@ const Process = () => {
           <p className="text-primary-foreground/55 mt-3 max-w-md mx-auto text-sm leading-relaxed">
             A simple, transparent process from your first call to the final reveal.
           </p>
-        </motion.div>
+        </MotionDiv>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 relative">
 
           {steps.map((step, i) => (
-            <motion.div
+            <MotionDiv
               key={step.number}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -90,12 +88,12 @@ const Process = () => {
                   {step.description}
                 </p>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -107,7 +105,7 @@ const Process = () => {
           >
             Start Your Project Today
           </a>
-        </motion.div>
+        </MotionDiv>
       </div>
     </section>
   );
