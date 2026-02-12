@@ -1,11 +1,21 @@
 import { MotionDiv } from "@/components/ui/motion-wrapper";
-import { Bath, Wrench, Paintbrush, Lightbulb, Droplets, LayoutGrid, ArrowRight } from "lucide-react";
+import { Bath, Wrench, CookingPot, WashingMachine, Droplets, LayoutGrid, ArrowRight } from "lucide-react";
 
 const services = [
   {
     icon: Bath,
-    title: "Full Renovations",
+    title: "Bathroom Renovations",
     description: "Complete bathroom transformations from demolition to final fit-off, tailored to your vision.",
+  },
+  {
+    icon: CookingPot,
+    title: "Kitchen Renovations",
+    description: "Modern kitchen transformations with premium benchtops, cabinetry, and smart layouts.",
+  },
+  {
+    icon: WashingMachine,
+    title: "Laundry Renovations",
+    description: "Functional and stylish laundry spaces designed for efficiency and everyday convenience.",
   },
   {
     icon: Droplets,
@@ -21,16 +31,6 @@ const services = [
     icon: Wrench,
     title: "Plumbing & Fixtures",
     description: "Licensed plumbing with access to the finest Australian and European tapware brands.",
-  },
-  {
-    icon: Paintbrush,
-    title: "Custom Joinery",
-    description: "Bespoke vanities and cabinetry designed to maximise your space and style.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Design Consultation",
-    description: "Complimentary design sessions to bring your dream bathroom to life.",
   },
 ];
 

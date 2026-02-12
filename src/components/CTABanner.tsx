@@ -5,11 +5,11 @@ import { CONTACT_DETAILS } from "@/constants";
 
 const CTABanner = () => {
   return (
-    <section className="py-16 lg:py-20 bg-gold relative overflow-hidden">
+    <section className="py-16 lg:py-20 bg-charcoal relative overflow-hidden">
       {/* Subtle pattern overlay */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
-          backgroundImage: "radial-gradient(circle at 2px 2px, hsl(var(--accent-foreground)) 1px, transparent 0)",
+          backgroundImage: "radial-gradient(circle at 2px 2px, hsl(var(--cream)) 1px, transparent 0)",
           backgroundSize: "32px 32px",
         }} />
       </div>
@@ -21,10 +21,10 @@ const CTABanner = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto"
         >
-          <h2 className="font-display text-3xl lg:text-4xl font-semibold text-accent-foreground mb-4">
+          <h2 className="font-display text-3xl lg:text-4xl font-semibold text-cream mb-4">
             Ready to Love Your Bathroom?
           </h2>
-          <p className="text-accent-foreground/80 text-sm lg:text-base leading-relaxed mb-8 max-w-lg mx-auto">
+          <p className="text-cream/65 text-sm lg:text-base leading-relaxed mb-8 max-w-lg mx-auto">
             Book your free, no-obligation consultation today and get a detailed 3D design
             plus fixed-price quote — all at zero cost.
           </p>
@@ -38,7 +38,7 @@ const CTABanner = () => {
             </a>
             <a
               href={CONTACT_DETAILS.phone.href}
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-accent-foreground/30 text-accent-foreground font-medium text-sm rounded-sm hover:bg-accent-foreground/10 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-cream/25 text-cream font-medium text-sm rounded-sm hover:bg-cream/10 transition-colors"
             >
               <Phone className="w-4 h-4" />
               Call {CONTACT_DETAILS.phone.display}

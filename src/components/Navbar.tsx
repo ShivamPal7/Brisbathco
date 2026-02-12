@@ -5,6 +5,9 @@ import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { CONTACT_DETAILS } from "@/constants";
+import Image from "next/image";
+import logoLight from "@/assets/logo_light.png";
+import logoDark from "@/assets/logo_dark.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,9 +32,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <a href="#" className="font-display text-xl lg:text-2xl font-semibold tracking-tight">
-            <span className={scrolled ? "text-foreground" : "text-cream"}>Bris</span>
-            <span className="text-gold">bath</span>
-            <span className={scrolled ? "text-foreground" : "text-cream"}>co</span>
+            {scrolled ? <Image src={logoLight} alt="Logo" width={80} height={80} /> : <Image src={logoDark} alt="Logo" width={80} height={80} />}
           </a>
 
           <div className="hidden lg:flex items-center gap-8">
