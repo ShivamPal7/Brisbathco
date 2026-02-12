@@ -74,9 +74,9 @@ const Services = () => {
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                 {service.description}
               </p>
-              <span className="inline-flex items-center gap-1 text-xs font-medium text-gold opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+              {/* <span className="inline-flex items-center gap-1 text-xs font-medium text-gold opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
                 Learn more <ArrowRight className="w-3 h-3" />
-              </span>
+              </span> */}
             </MotionDiv>
           ))}
         </div>

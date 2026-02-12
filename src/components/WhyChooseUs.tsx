@@ -1,5 +1,5 @@
 import { MotionDiv } from "@/components/ui/motion-wrapper";
-import { ShieldCheck, DollarSign, Palette, HeartHandshake, Timer, Sparkles } from "lucide-react";
+import { ShieldCheck, DollarSign, Palette, HeartHandshake, Timer, Sparkles, ClipboardList } from "lucide-react";
 
 const reasons = [
   {
@@ -8,14 +8,14 @@ const reasons = [
     description: "QBCC licensed with comprehensive insurance. Your home and investment are fully protected.",
   },
   {
-    icon: DollarSign,
-    title: "Fixed-Price Guarantee",
-    description: "No hidden costs or surprise bills. The price we quote is the price you pay — guaranteed.",
+    icon: HeartHandshake,
+    title: "6.5-Year Warranty",
+    description: "Every renovation backed by a comprehensive 10-year structural and workmanship warranty.",
   },
   {
-    icon: Palette,
-    title: "Free 3D Design",
-    description: "Visualise your dream bathroom in full 3D before any work begins. Included with every project.",
+    icon: ClipboardList,
+    title: "Free On-Site Assessment",
+    description: "We provide a detailed on-site assessment to understand your needs and provide a quote.",
   },
   {
     icon: Timer,
@@ -23,9 +23,9 @@ const reasons = [
     description: "We commit to a timeline and stick to it. Penalties apply if we run over — that's our promise.",
   },
   {
-    icon: HeartHandshake,
-    title: "10-Year Warranty",
-    description: "Every renovation backed by a comprehensive 10-year structural and workmanship warranty.",
+    icon: DollarSign,
+    title: "Fixed-Price Guarantee",
+    description: "No hidden costs or surprise bills. The price we quote is the price you pay — guaranteed.",
   },
   {
     icon: Sparkles,

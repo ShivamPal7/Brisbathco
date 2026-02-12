@@ -25,7 +25,7 @@ const CTABanner = () => {
             Ready to Love Your Bathroom?
           </h2>
           <p className="text-cream/65 text-sm lg:text-base leading-relaxed mb-8 max-w-lg mx-auto">
-            Book your free, no-obligation consultation today and get a detailed 3D design
+            Book your free, no-obligation consultation today and get a detailed design
             plus fixed-price quote — all at zero cost.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

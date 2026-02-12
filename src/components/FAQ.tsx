@@ -8,28 +8,40 @@ import {
 
 const faqs = [
   {
-    question: "How much does a full bathroom renovation cost in Brisbane?",
-    answer: "Our full bathroom renovations typically range from $18,000 to $45,000 depending on size, materials, and complexity. We provide a detailed, fixed-price quote after our free in-home consultation — no hidden costs, ever.",
+    question: "How much would a bathroom renovation cost?",
+    answer: "Cost depends on room size, site conditions, and scope of tiling. We provide a written quote covering all trades, labour, and building materials — so you know exactly what's included.",
   },
   {
-    question: "How long does a typical bathroom renovation take?",
-    answer: "Most standard bathroom renovations are completed within 10–15 business days. Larger or more complex projects (e.g., structural changes, custom joinery) may take 3–4 weeks. We provide a clear timeline upfront and commit to it.",
+    question: "How long will my bathroom renovation take?",
+    answer: "We estimate around three weeks. If we can finish sooner we will, but we prefer to set realistic expectations so we never let you down.",
   },
   {
-    question: "Do you handle all the trades, or do I need to hire separately?",
-    answer: "We manage everything from start to finish — demolition, plumbing, electrical, waterproofing, tiling, painting, and final fit-off. You have one point of contact and zero hassle.",
+    question: "Do you provide free quotes?",
+    answer: "Yes, all consultations are free and quotes are valid for three months. We visit your site, discuss your options, and provide a detailed quotation. If extensive drafting is required, a drafting fee may apply — which is deducted from your quote if you proceed.",
   },
   {
-    question: "What warranty do you offer on your work?",
-    answer: "Every Brisbathco renovation comes with a 10-year structural and workmanship warranty. All fixtures and materials carry their manufacturer warranties as well. We stand behind our work completely.",
+    question: "Do you offer a warranty for your renovation services?",
+    answer: "Yes, we offer a 6.5-year warranty as specified by the Queensland Building and Construction Commission (QBCC Licence Number 732730).",
   },
   {
-    question: "Can I stay in my home during the renovation?",
-    answer: "Absolutely. We use dust barriers, protective sheeting, and maintain a clean worksite daily. If you have a second bathroom, daily life is barely interrupted. We'll work with you to minimise disruption.",
+    question: "What suburbs do you service?",
+    answer: "We service suburbs across Brisbane City, North Brisbane (Kedron, Stafford, Chermside, Ashgrove, The Gap), South Brisbane (Holland Park, Carindale, Bulimba, Coorparoo), Western Brisbane (Bardon, Toowong, Mitchelton), and Brisbane City (Fortitude Valley, New Farm, Newstead). If your suburb isn't listed, feel free to ask.",
   },
   {
-    question: "What areas in Brisbane do you service?",
-    answer: "We service all of Brisbane and South East Queensland including Gold Coast, Sunshine Coast, Ipswich, Redlands, and Logan. Contact us to confirm availability in your suburb.",
+    question: "What insurance do you have?",
+    answer: "Our company and all tradesmen are fully insured, with Public Liability cover of $10,000,000.",
+  },
+  {
+    question: "Do I have to be on-site during the renovation?",
+    answer: "No — we use a secure lock box for key access so you don't need to be home. Our tradesmen are professional, trusted, and each job is personally project-managed by one of the owners.",
+  },
+  {
+    question: "What other rooms do you renovate?",
+    answer: "We also renovate laundries, ensuites, toilets, and powder rooms.",
+  },
+  {
+    question: "What happens to the building rubbish from the renovation?",
+    answer: "A skip bin is included in our quote. We use it throughout the project and arrange collection as soon as the renovation is complete.",
   },
 ];
 
