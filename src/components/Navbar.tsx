@@ -38,11 +38,11 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
           background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)",
         }}
       />
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-background/95 backdrop-blur-lg shadow-sm border-b border-border" : "bg-transparent border-b border-transparent"}`}>
+      <nav aria-label="Main navigation" className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-background/95 backdrop-blur-lg shadow-sm border-b border-border" : "bg-transparent border-b border-transparent"}`}>
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             <Link href="/" className="font-display text-xl lg:text-2xl font-semibold tracking-tight">
-              {scrolled ? <Image src={logoDark} alt="Logo" width={80} height={80} /> : <Image src={logoLight} alt="Logo" width={80} height={80} />}
+              {scrolled ? <Image src={logoDark} alt="Logo" width={80} height={80} className="w-16 h-16 md:h-20 md:w-20" /> : <Image src={logoLight} alt="Logo" width={80} height={80} className="w-20 h-20" />}
             </Link>
 
             <div className="hidden lg:flex items-center gap-8">
@@ -72,6 +72,8 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
               className={`lg:hidden p-2 ${scrolled ? "text-foreground" : "text-cream"}`}
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

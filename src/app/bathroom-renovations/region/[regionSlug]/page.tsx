@@ -16,6 +16,8 @@ import { Metadata } from "next";
 import * as motion from "framer-motion/client";
 import { CONTACT_DETAILS } from "@/constants";
 
+const SITE_URL = "https://www.brisbathco.com.au";
+
 // Pre-render all 4 region pages
 export async function generateStaticParams() {
     return regions.map((region) => ({
@@ -33,12 +35,16 @@ export async function generateMetadata({
     const region = getRegionBySlug(regionSlug);
     if (!region) return { title: "Region Not Found" };
 
+    const canonical = `${SITE_URL}/bathroom-renovations/region/${regionSlug}`;
+
     return {
         title: region.metaTitle,
         description: region.metaDescription,
+        alternates: { canonical },
         openGraph: {
             title: region.metaTitle,
             description: region.metaDescription,
+            url: canonical,
             type: "website",
             locale: "en_AU",
         },
@@ -91,10 +97,37 @@ export default async function RegionPage({
 
     return (
         <div className="bg-background">
-            {/* JSON-LD Schema */}
+            {/* JSON-LD Schemas */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(region.jsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        itemListElement: [
+                            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+                            { "@type": "ListItem", position: 2, name: region.name, item: `${SITE_URL}/bathroom-renovations/region/${region.slug}` },
+                        ],
+                    }),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        mainEntity: region.faqs.map((faq) => ({
+                            "@type": "Question",
+                            name: faq.question,
+                            acceptedAnswer: { "@type": "Answer", text: faq.answer },
+                        })),
+                    }),
+                }}
             />
 
             {/* ── Hero ─────────────────────────────────────────────── */}

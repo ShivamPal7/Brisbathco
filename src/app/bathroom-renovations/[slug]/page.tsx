@@ -7,6 +7,20 @@ import { Metadata } from "next";
 import * as motion from "framer-motion/client";
 import { CONTACT_DETAILS } from "@/constants";
 
+const SITE_URL = "https://www.brisbathco.com.au";
+
+function makeBreadcrumbSchema(suburbName: string, slug: string) {
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: "Bathroom Renovations", item: `${SITE_URL}/bathroom-renovations` },
+            { "@type": "ListItem", position: 3, name: `Bathroom Renovations ${suburbName}`, item: `${SITE_URL}/bathroom-renovations/${slug}` },
+        ],
+    };
+}
+
 // Generate static params — combine basic + expanded suburb slugs (deduplicated)
 export async function generateStaticParams() {
     const basicSlugs = suburbs.map((s) => s.slug);
@@ -18,14 +32,17 @@ export async function generateStaticParams() {
 // Generate metadata — prefer expanded data
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
+    const canonical = `${SITE_URL}/bathroom-renovations/${slug}`;
     const expanded = getExpandedSuburbBySlug(slug);
     if (expanded) {
         return {
             title: expanded.metaTitle,
             description: expanded.metaDescription,
+            alternates: { canonical },
             openGraph: {
                 title: expanded.metaTitle,
                 description: expanded.metaDescription,
+                url: canonical,
                 type: "website",
                 locale: "en_AU",
             },
@@ -33,7 +50,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
     const suburb = getSuburbBySlug(slug);
     if (!suburb) return { title: "Suburb Not Found" };
-    return { title: suburb.metaTitle, description: suburb.metaDescription };
+    return {
+        title: suburb.metaTitle,
+        description: suburb.metaDescription,
+        alternates: { canonical },
+        openGraph: {
+            title: suburb.metaTitle,
+            description: suburb.metaDescription,
+            url: canonical,
+            type: "website",
+            locale: "en_AU",
+        },
+    };
 }
 
 export default async function SuburbPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -55,6 +83,11 @@ export default async function SuburbPage({ params }: { params: Promise<{ slug: s
 
     return (
         <div className="bg-background">
+            {/* Breadcrumb Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(makeBreadcrumbSchema(suburb.name, suburb.slug)) }}
+            />
             {/* Hero */}
             <section className="relative pt-28 lg:pt-36 pb-16 lg:pb-20 bg-charcoal overflow-hidden">
                 <div className="absolute inset-0 opacity-[0.05]" style={{
@@ -189,6 +222,11 @@ function ExpandedSuburbPage({ data }: { data: ExpandedSuburbData }) {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(data.jsonLd) }}
+            />
+            {/* Breadcrumb Schema */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(makeBreadcrumbSchema(data.name, data.slug)) }}
             />
 
             {/* Hero */}
