@@ -141,27 +141,27 @@ const ReviewCard = ({
 }: {
   review: (typeof reviews)[number];
 }) => (
-  <div className="group relative flex-shrink-0 w-[340px] md:w-[420px] p-6 lg:p-8 bg-card border border-border/60 hover:border-gold/40 transition-all duration-500 select-none">
+  <div className="group relative flex-shrink-0 w-[280px] sm:w-[340px] md:w-[420px] p-4 sm:p-6 lg:p-8 bg-card border border-border/60 hover:border-gold/40 transition-all duration-500 select-none">
     {/* Subtle gold shimmer on hover */}
     <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.03] via-transparent to-gold/[0.06] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-    <Quote className="w-7 h-7 text-gold/20 mb-3 transition-colors duration-500 group-hover:text-gold/40" />
+    <Quote className="w-5 h-5 sm:w-7 sm:h-7 text-gold/20 mb-2 sm:mb-3 transition-colors duration-500 group-hover:text-gold/40" />
 
-    <div className="flex gap-0.5 mb-4">
+    <div className="flex gap-0.5 mb-3 sm:mb-4">
       {[...Array(review.rating)].map((_, j) => (
         <Star
           key={j}
-          className="w-4 h-4 fill-gold text-gold"
+          className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-gold text-gold"
         />
       ))}
     </div>
 
-    <p className="text-sm text-muted-foreground leading-relaxed mb-5 min-h-18">
+    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-4 sm:mb-5 min-h-14 sm:min-h-18">
       &ldquo;{review.text}&rdquo;
     </p>
 
-    <div className="border-t border-border/50 pt-4">
-      <p className="text-sm font-medium text-foreground">{review.name}</p>
+    <div className="border-t border-border/50 pt-3 sm:pt-4">
+      <p className="text-xs sm:text-sm font-medium text-foreground">{review.name}</p>
       <p className="text-xs text-muted-foreground">
         {review.location}, Brisbane
       </p>
@@ -240,10 +240,12 @@ const MarqueeRow = ({
       className="overflow-hidden w-full"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
     >
       <div
         ref={rowRef}
-        className="flex gap-5 will-change-transform"
+        className="flex gap-3 sm:gap-5 will-change-transform"
         style={{ width: "max-content" }}
       >
         {doubled.map((review, i) => (
@@ -264,14 +266,14 @@ const Reviews = () => {
   const row2 = reviews.slice(mid);
 
   return (
-    <section id="reviews" className="py-20 lg:py-28 bg-muted overflow-hidden">
+    <section id="reviews" className="py-12 sm:py-20 lg:py-28 bg-muted overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          className="text-center mb-8 sm:mb-14"
         >
           <div className="flex items-center justify-center gap-1 mb-3">
             {[...Array(5)].map((_, i) => (
@@ -281,7 +283,7 @@ const Reviews = () => {
               />
             ))}
           </div>
-          <h2 className="font-display text-3xl lg:text-4xl font-semibold text-foreground">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-foreground">
             What Our Clients Say
           </h2>
           <p className="text-sm text-muted-foreground mt-2">
@@ -292,10 +294,10 @@ const Reviews = () => {
 
       {/* Edge fade masks */}
       <div className="relative">
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 bg-gradient-to-r from-muted to-transparent" />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 bg-gradient-to-l from-muted to-transparent" />
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-20 md:w-36 z-10 bg-gradient-to-r from-muted to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-20 md:w-36 z-10 bg-gradient-to-l from-muted to-transparent" />
 
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-3 sm:gap-5">
           <MotionDiv
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

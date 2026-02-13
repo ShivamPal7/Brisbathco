@@ -1,9 +1,9 @@
 import { MotionDiv } from "@/components/ui/motion-wrapper";
 import Image from "next/image";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
+import gallery1 from "@/assets/projects/project1.jpg";
+import gallery2 from "@/assets/projects/project2.jpg";
+import gallery3 from "@/assets/projects/project3.jpg";
+import gallery4 from "@/assets/projects/project4.png";
 import { ArrowRight } from "lucide-react";
 
 const images = [

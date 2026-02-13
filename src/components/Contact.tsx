@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowRight, CheckCircle2, Facebook, Instagram } from "lucide-react";
 import { useState } from "react";
 
 import { CONTACT_DETAILS } from "@/constants";
@@ -49,6 +49,28 @@ const Contact = () => {
                 <MapPin className="w-4 h-4 text-gold" />
                 {CONTACT_DETAILS.address}
               </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex gap-3 mt-6">
+              <a
+                href={CONTACT_DETAILS.socials.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:bg-gold hover:text-white hover:border-gold transition-all duration-300"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a
+                href={CONTACT_DETAILS.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:bg-gold hover:text-white hover:border-gold transition-all duration-300"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
             </div>
           </motion.div>
 

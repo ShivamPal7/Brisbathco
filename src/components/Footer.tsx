@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Phone, Mail, MapPin } from "lucide-react";
 import { CONTACT_DETAILS } from "@/constants";
+import Image from "next/image";
+import LogoLight from "@/assets/logo-light.png";
 
 const Footer = () => {
   const links = [
@@ -32,15 +34,15 @@ const Footer = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 mb-16 justify-between">
           {/* Brand Column - Left Side */}
-          <div className="lg:w-1/3 xl:w-1/4 space-y-6">
-            <Link href="/" className="inline-block font-display text-2xl font-semibold">
-              Bris<span className="text-gold">bath</span>co
+          <div className="lg:w-1/3 xl:w-1/4">
+            <Link href="/" className="inline-block font-display font-semibold">
+              <Image src={LogoLight} alt="Brisbane Bath Co Logo" width={100} height={100} />
             </Link>
             <p className="text-sm text-cream/60 leading-relaxed max-w-sm">
               Brisbane's trusted bathroom renovation specialists.
               Transforming homes with precision craftsmanship since 2010.
             </p>
-            <div className="space-y-3 pt-2">
+            <div className="space-y-3 pt-6">
               <a href={CONTACT_DETAILS.phone.href} className="flex items-center gap-3 text-sm text-cream/70 hover:text-primary transition-colors group">
                 <div className="w-8 h-8 rounded-full bg-cream/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                   <Phone className="w-4 h-4" />
