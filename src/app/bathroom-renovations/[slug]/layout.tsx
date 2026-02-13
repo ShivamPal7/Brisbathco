@@ -8,8 +8,8 @@ export default function BathroomRenovationLayout({
 }) {
   return (
     <main className="">
-      <Navbar />
-      {children} 
+      <Navbar forceScrolled />
+      {children}
       <Footer />
     </main>
   );

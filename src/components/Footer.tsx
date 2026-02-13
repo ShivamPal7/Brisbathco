@@ -14,11 +14,11 @@ const Footer = () => {
   ];
 
   const serviceAreas = [
+    { name: "Northern Suburbs", href: "/bathroom-renovations/region/brisbane-northern-suburbs" },
+    { name: "Southern Suburbs", href: "/bathroom-renovations/region/brisbane-southern-suburbs" },
+    { name: "Western Suburbs", href: "/bathroom-renovations/region/brisbane-western-suburbs" },
+    { name: "City Suburbs", href: "/bathroom-renovations/region/brisbane-city-suburbs" },
     { name: "Carindale", href: "/bathroom-renovations/carindale" },
-    { name: "Mount Gravatt", href: "/bathroom-renovations/mount-gravatt" },
-    { name: "Sunnybank", href: "/bathroom-renovations/sunnybank" },
-    { name: "Coorparoo", href: "/bathroom-renovations/coorparoo" },
-    { name: "Holland Park", href: "/bathroom-renovations/holland-park" },
     { name: "View All Areas", href: "/#service-areas", highlight: true },
   ];
 
@@ -35,7 +35,7 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 mb-16 justify-between">
           {/* Brand Column - Left Side */}
           <div className="lg:w-1/3 xl:w-1/4">
-            <Link href="/" className="inline-block font-display font-semibold">
+            <Link href="/" className="inline-block font-display font-semibold -mt-2">
               <Image src={LogoLight} alt="Brisbane Bath Co Logo" width={100} height={100} />
             </Link>
             <p className="text-sm text-cream/60 leading-relaxed max-w-sm">

@@ -5,6 +5,7 @@ import Link from "next/link";
 const serviceRegions = [
   {
     region: "Brisbane Northern Suburbs",
+    regionSlug: "brisbane-northern-suburbs",
     suburbs: [
       { name: "Kedron", slug: "kedron" },
       { name: "Stafford", slug: "stafford" },
@@ -19,6 +20,7 @@ const serviceRegions = [
   },
   {
     region: "Brisbane Southern Suburbs",
+    regionSlug: "brisbane-southern-suburbs",
     suburbs: [
       { name: "Holland Park", slug: "holland-park" },
       { name: "Carindale", slug: "carindale" },
@@ -31,6 +33,7 @@ const serviceRegions = [
   },
   {
     region: "Brisbane Western Suburbs",
+    regionSlug: "brisbane-western-suburbs",
     suburbs: [
       { name: "Bardon", slug: "bardon" },
       { name: "Toowong", slug: "toowong" },
@@ -40,6 +43,7 @@ const serviceRegions = [
   },
   {
     region: "Brisbane City Suburbs",
+    regionSlug: "brisbane-city-suburbs",
     suburbs: [
       { name: "Fortitude Valley", slug: "fortitude-valley" },
       { name: "New Farm", slug: "new-farm" },
@@ -87,9 +91,15 @@ const ServiceAreas = () => {
             <div className="space-y-5">
               {serviceRegions.map((region) => (
                 <div key={region.region}>
-                  <h3 className="font-display text-base font-semibold text-foreground mb-2 pb-1.5 border-border">
-                    {region.region}
-                  </h3>
+                  <Link
+                    href={`/bathroom-renovations/region/${region.regionSlug}`}
+                    className="group inline-flex items-center gap-2 mb-2 pb-1.5 border-border"
+                  >
+                    <h3 className="font-display text-base font-semibold text-foreground group-hover:text-gold transition-colors">
+                      {region.region}
+                    </h3>
+                    <ArrowRight className="w-3.5 h-3.5 text-gold opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                  </Link>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-3 gap-y-0.5">
                     {region.suburbs.map((suburb) => {
                       const i = globalIndex++;
