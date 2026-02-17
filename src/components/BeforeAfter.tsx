@@ -1,31 +1,69 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
-import { motion } from "framer-motion";
+import { useRef, useCallback, useEffect } from "react";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import Image from "next/image";
 import beforeImg from "@/assets/before-bathroom.jpg";
 import afterImg from "@/assets/after-bathroom.jpg";
 
 const BeforeAfter = () => {
-  const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-
+  const x = useMotionValue(50); // 0 to 100%
+  const position = useSpring(x, { stiffness: 400, damping: 40 }); // Add spring for smoothness
+  
+  // Transform percentage to CSS values
+  const clipPathLeft = useTransform(position, (v) => `inset(0 ${100 - v}% 0 0)`);
+  const dividerLeft = useTransform(position, (v) => `${v}%`);
+  
   const handleMove = useCallback((clientX: number) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    setSliderPosition((x / rect.width) * 100);
-  }, []);
+    const newX = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    const percentage = (newX / rect.width) * 100;
+    x.set(percentage);
+  }, [x]);
 
-  const handleMouseDown = () => { isDragging.current = true; };
-  const handleMouseUp = () => { isDragging.current = false; };
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (isDragging.current) handleMove(e.clientX);
+  const handleMouseDown = (e: React.MouseEvent) => {
+    handleMove(e.clientX);
+    window.addEventListener("mousemove", handleConfigs);
+    window.addEventListener("mouseup", handleMouseUp);
   };
-  const handleTouchMove = (e: React.TouchEvent) => {
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    handleMove(e.touches[0].clientX);
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchend", handleTouchEnd);
+  };
+
+  const handleConfigs = (e: MouseEvent) => {
+    handleMove(e.clientX);
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    // Prevent scrolling while dragging
+    if (e.cancelable) e.preventDefault();
     handleMove(e.touches[0].clientX);
   };
+
+  const handleMouseUp = () => {
+    window.removeEventListener("mousemove", handleConfigs);
+    window.removeEventListener("mouseup", handleMouseUp);
+  };
+
+  const handleTouchEnd = () => {
+    window.removeEventListener("touchmove", handleTouchMove);
+    window.removeEventListener("touchend", handleTouchEnd);
+  };
+
+  // Cleanup listeners on unmount
+  useEffect(() => {
+    return () => {
+      window.removeEventListener("mousemove", handleConfigs);
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className="py-20 lg:py-28 bg-muted">
@@ -56,13 +94,9 @@ const BeforeAfter = () => {
         >
           <div
             ref={containerRef}
-            className="relative aspect-video overflow-hidden rounded-sm cursor-col-resize select-none shadow-elegant"
+            className="relative aspect-video overflow-hidden rounded-sm cursor-col-resize select-none shadow-elegant touch-none"
             onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
-            onMouseMove={handleMouseMove}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleMouseUp}
+            onTouchStart={handleTouchStart}
           >
             {/* After image (full background) */}
             <Image
@@ -70,33 +104,29 @@ const BeforeAfter = () => {
               alt="Bathroom after renovation"
               fill
               sizes="(max-width: 1024px) 100vw, 896px"
-              className="object-cover"
-              loading="lazy"
-              placeholder="blur"
+              className="object-cover select-none pointer-events-none"
+              priority
             />
 
             {/* Before image (clipped) */}
-            <div
-              className="absolute inset-0 overflow-hidden"
-              style={{ width: `${sliderPosition}%` }}
+            <motion.div
+              className="absolute inset-0"
+              style={{ clipPath: clipPathLeft }}
             >
-              <div className="absolute inset-0" style={{ width: `${100 / (sliderPosition / 100)}%`, maxWidth: "none" }}>
-                <Image
+               <Image
                   src={beforeImg}
                   alt="Bathroom before renovation"
                   fill
                   sizes="(max-width: 1024px) 100vw, 896px"
-                  className="object-cover"
-                  loading="lazy"
-                  placeholder="blur"
+                  className="object-cover select-none pointer-events-none"
+                  priority
                 />
-              </div>
-            </div>
+            </motion.div>
 
             {/* Slider line */}
-            <div
-              className="absolute top-0 bottom-0 w-0.5 bg-cream z-10"
-              style={{ left: `${sliderPosition}%` }}
+            <motion.div
+              className="absolute top-0 bottom-0 w-0.5 bg-cream z-10 cursor-col-resize"
+              style={{ left: dividerLeft }}
             >
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-cream shadow-lg flex items-center justify-center">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-charcoal">
@@ -104,13 +134,13 @@ const BeforeAfter = () => {
                   <path d="M13 4L17 10L13 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-            </div>
+            </motion.div>
 
             {/* Labels */}
-            <div className="absolute top-4 left-4 px-3 py-1.5 bg-foreground/70 backdrop-blur-sm rounded-sm text-xs font-medium text-cream z-20">
+            <div className="absolute top-4 left-4 px-3 py-1.5 bg-foreground/70 backdrop-blur-sm rounded-sm text-xs font-medium text-cream z-20 pointer-events-none">
               Before
             </div>
-            <div className="absolute top-4 right-4 px-3 py-1.5 bg-gold/90 backdrop-blur-sm rounded-sm text-xs font-medium text-accent-foreground z-20">
+            <div className="absolute top-4 right-4 px-3 py-1.5 bg-gold/90 backdrop-blur-sm rounded-sm text-xs font-medium text-accent-foreground z-20 pointer-events-none">
               After
             </div>
           </div>

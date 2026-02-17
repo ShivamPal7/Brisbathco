@@ -58,7 +58,7 @@ const ServiceAreas = () => {
   let globalIndex = 0;
 
   return (
-    <section id="service-areas" className="py-20 lg:py-28 bg-muted/40">
+    <section id="service-areas" className="py-20 lg:py-28 bg-muted/40 overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
         <MotionDiv

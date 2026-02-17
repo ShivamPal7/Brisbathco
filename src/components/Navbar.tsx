@@ -21,11 +21,12 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
   }, [forceScrolled]);
 
   const links = [
-    { label: "Services", href: "#services" },
-    { label: "Process", href: "#process" },
-    { label: "Gallery", href: "#gallery" },
-    { label: "Reviews", href: "#reviews" },
-    { label: "Contact", href: "#contact" },
+    { label: "Services", href: "/#services" },
+    { label: "Process", href: "/#process" },
+    { label: "Gallery", href: "/#gallery" },
+    { label: "Reviews", href: "/#reviews" },
+    { label: "Blogs", href: "/blogs" },
+    { label: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -47,13 +48,13 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
 
             <div className="hidden lg:flex items-center gap-8">
               {links.map((link) => (
-                <a
+                <Link
                   key={link.label}
                   href={link.href}
                   className={`text-sm font-medium transition-colors ${scrolled ? "text-muted-foreground hover:text-foreground" : "text-cream/70 hover:text-cream"}`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
 
@@ -91,14 +92,14 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
             >
               <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
                 {links.map((link) => (
-                  <a
+                  <Link
                     key={link.label}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className="text-sm font-medium text-muted-foreground hover:text-foreground py-2"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
                 <a
                   href="#contact"
