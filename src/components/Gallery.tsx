@@ -1,9 +1,14 @@
 import { MotionDiv } from "@/components/ui/motion-wrapper";
 import Image from "next/image";
+import Link from "next/link";
 import gallery1 from "@/assets/projects/project1.jpg";
 import gallery2 from "@/assets/projects/project2.jpg";
 import gallery3 from "@/assets/projects/project3.jpg";
 import gallery4 from "@/assets/projects/project4.png";
+import gallery6 from "@/assets/projects/project6.jpg";
+import gallery7 from "@/assets/projects/project7.jpg";
+import gallery8 from "@/assets/projects/project8.jpg";
+import gallery9 from "@/assets/projects/project9.jpg";
 import { ArrowRight } from "lucide-react";
 
 const images = [
@@ -11,6 +16,10 @@ const images = [
   { src: gallery2, alt: "Walk-in shower with brass fixtures", label: "New Farm Master Bath" },
   { src: gallery3, alt: "Minimalist powder room design", label: "Bulimba Powder Room" },
   { src: gallery4, alt: "Luxury master ensuite with freestanding bath", label: "Teneriffe Penthouse" },
+  { src: gallery6, alt: "Contemporary bathroom with floor-to-ceiling tiles", label: "Ascot Ensuite" },
+  { src: gallery7, alt: "Frameless glass shower renovation", label: "Hamilton Full Reno" },
+  { src: gallery8, alt: "Coastal-inspired bathroom with natural tones", label: "Redcliffe Bath" },
+  { src: gallery9, alt: "Herringbone tile feature wall bathroom", label: "Highgate Hill Ensuite" },
 ];
 
 const Gallery = () => {
@@ -34,7 +43,7 @@ const Gallery = () => {
           </p>
         </MotionDiv>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4" style={{ gridTemplateRows: 'auto' }}>
           {images.map((img, i) => (
             <MotionDiv
               key={i}
@@ -66,13 +75,13 @@ const Gallery = () => {
           viewport={{ once: true }}
           className="text-center mt-10"
         >
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 text-sm font-medium text-gold hover:underline underline-offset-4 transition-all"
+          <Link
+            href="/gallery"
+            className="inline-flex items-center gap-2 text-sm font-medium text-gold hover:underline underline-offset-4 transition-all group"
           >
-            Want to see more? Let's talk about your project
-            <ArrowRight className="w-4 h-4" />
-          </a>
+            View the full gallery — see all our projects
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+          </Link>
         </MotionDiv>
       </div>
     </section>

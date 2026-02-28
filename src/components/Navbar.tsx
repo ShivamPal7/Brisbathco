@@ -23,7 +23,7 @@ const Navbar = ({ forceScrolled = false }: { forceScrolled?: boolean }) => {
   const links = [
     { label: "Services", href: "/#services" },
     { label: "Process", href: "/#process" },
-    { label: "Gallery", href: "/#gallery" },
+    { label: "Gallery", href: "/gallery" },
     { label: "Reviews", href: "/#reviews" },
     { label: "Blogs", href: "/blogs" },
     { label: "Contact", href: "/#contact" },
