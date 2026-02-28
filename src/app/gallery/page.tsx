@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -62,12 +62,12 @@ const galleryItems: GalleryItem[] = [
   { src: p12, alt: "Luxury freestanding bath full renovation",          w: 3024, h: 4032 },
 ];
 
-const stagger = {
+const stagger: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.06 } },
 };
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   show:   { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
