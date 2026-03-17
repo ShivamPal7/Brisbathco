@@ -1,17 +1,51 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, ArrowRight, CheckCircle2, Facebook, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowRight, CheckCircle2, Facebook, Instagram, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 import { CONTACT_DETAILS } from "@/constants";
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      projectType: formData.get("projectType"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      setSubmitted(true);
+      toast.success("Message sent successfully!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -104,51 +138,73 @@ const Contact = () => {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <input
                       type="text"
+                      name="firstName"
                       placeholder="First Name"
                       required
-                      className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow"
+                      disabled={isSubmitting}
+                      className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow disabled:opacity-50"
                     />
                     <input
                       type="text"
+                      name="lastName"
                       placeholder="Last Name"
                       required
-                      className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow"
+                      disabled={isSubmitting}
+                      className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow disabled:opacity-50"
                     />
                   </div>
                   <input
                     type="email"
+                    name="email"
                     placeholder="Email Address"
                     required
-                    className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow"
+                    disabled={isSubmitting}
+                    className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow disabled:opacity-50"
                   />
                   <input
                     type="tel"
+                    name="phone"
                     placeholder="Phone Number"
                     required
-                    className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow"
+                    disabled={isSubmitting}
+                    className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow disabled:opacity-50"
                   />
                   <select
-                    className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow"
+                    name="projectType"
+                    className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow disabled:opacity-50"
                     defaultValue=""
+                    disabled={isSubmitting}
                   >
                     <option value="" disabled>Type of Project</option>
-                    <option>Full Bathroom Renovation</option>
-                    <option>Ensuite Renovation</option>
-                    <option>Shower Replacement</option>
-                    <option>Tiling & Waterproofing</option>
-                    <option>Other</option>
+                    <option value="Full Bathroom Renovation">Full Bathroom Renovation</option>
+                    <option value="Ensuite Renovation">Ensuite Renovation</option>
+                    <option value="Shower Replacement">Shower Replacement</option>
+                    <option value="Tiling & Waterproofing">Tiling & Waterproofing</option>
+                    <option value="Other">Other</option>
                   </select>
                   <textarea
-                    placeholder="Tell us about your project..."
+                    name="message"
+                    placeholder="Tell us about your project... (Optional)"
                     rows={3}
-                    className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring resize-none transition-shadow"
+                    disabled={isSubmitting}
+                    className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring resize-none transition-shadow disabled:opacity-50"
                   />
                   <button
                     type="submit"
-                    className="group w-full py-3.5 bg-gold text-accent-foreground font-medium text-sm rounded-sm hover:shadow-gold transition-all duration-300 flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className="group w-full py-3.5 bg-gold text-accent-foreground font-medium text-sm rounded-sm hover:shadow-gold transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Get My Free Quote
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    {isSubmitting ? (
+                      <>
+                        Sending...
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      </>
+                    ) : (
+                      <>
+                        Get My Free Quote
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                      </>
+                    )}
                   </button>
                   <p className="text-xs text-muted-foreground text-center">
                     No spam. We'll respond within 24 hours.

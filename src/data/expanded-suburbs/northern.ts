@@ -292,7 +292,7 @@ export const northernSuburbs: ExpandedSuburbData[] = [
             },
             {
                 heading: "Why Alderley Residents Trust Brisbathco",
-                body: "Alderley homeowners trust us because we combine character-home experience with unwavering quality standards. We're QBCC licensed, fully insured, and back every renovation with a written workmanship warranty. Our permanent team of qualified tradespeople takes genuine pride in their craft, and our transparent pricing structure means no hidden costs or post-completion surprises. We treat every Alderley home with the respect its character deserves.",
+                body: "Alderley homeowners trust us because we combine character-home experience with unwavering quality standards. We're QBCC licensed, fully insured, and back every renovation with a written workmanship warranty. Our permanent team of qualified tradespeople takes genuine pride in their craft, and our transparent pricing structure means no post-completion surprises. We treat every Alderley home with the respect its character deserves.",
             },
             {
                 heading: "Start Your Alderley Bathroom Project",

@@ -205,7 +205,7 @@ export const regions: RegionData[] = [
             {
                 question: "How much does a bathroom renovation cost in Brisbane's southern suburbs?",
                 answer:
-                    "Bathroom renovations in Brisbane's south typically range from $15,000 for a standard update to $40,000+ for a high-end ensuite with premium fixtures. We provide transparent, fixed-price quotes after our free consultation — no hidden costs.",
+                    "Bathroom renovations in Brisbane's south typically range from $15,000 for a standard update to $40,000+ for a high-end ensuite with premium fixtures. We provide transparent, fixed-price quotes after our free consultation.",
             },
             {
                 question: "How long will my south-side bathroom renovation take?",
@@ -331,7 +331,7 @@ export const regions: RegionData[] = [
             {
                 question: "How much does a bathroom renovation cost in Brisbane's western suburbs?",
                 answer:
-                    "Western suburbs bathroom renovations typically range from $18,000 to $45,000, reflecting the heritage considerations and higher specification often required. We provide a fixed-price quote after our free in-home assessment — no hidden costs or surprise extras.",
+                    "Western suburbs bathroom renovations typically range from $18,000 to $45,000, reflecting the heritage considerations and higher specification often required. We provide a fixed-price quote after our free in-home assessment.",
             },
             {
                 question: "Can you renovate bathrooms in Queenslander homes in Bardon?",

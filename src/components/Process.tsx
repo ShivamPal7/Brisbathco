@@ -24,7 +24,7 @@ const steps = [
     icon: CheckCircle2,
     number: "04",
     title: "Final Walkthrough",
-    description: "We do a thorough inspection together and won't leave until you're 100% satisfied.",
+    description: "We won't leave until you're 100% satisfied.",
   },
 ];
 

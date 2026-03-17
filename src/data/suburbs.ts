@@ -287,7 +287,7 @@ export const suburbs: SuburbData[] = [
     highlights: [
       "Excellent value without compromising quality",
       "Budget-conscious design options available",
-      "Full transparency on pricing — no hidden costs",
+      "Full transparency on pricing",
       "Flexible payment plans available",
     ],
     localInfo:

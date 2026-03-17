@@ -20,12 +20,12 @@ const reasons = [
   {
     icon: Timer,
     title: "On-Time Completion",
-    description: "We commit to a timeline and stick to it. Penalties apply if we run over — that's our promise.",
+    description: "We commit to a timeline and stick to it. We respect your time and schedule.",
   },
   {
     icon: DollarSign,
-    title: "Fixed-Price Guarantee",
-    description: "No hidden costs or surprise bills. The price we quote is the price you pay — guaranteed.",
+    title: "Honest Quote",
+    description: "We provide transparent, upfront pricing based on our detailed assessment.",
   },
   {
     icon: Sparkles,
