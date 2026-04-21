@@ -2,14 +2,23 @@
 
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, ArrowRight, CheckCircle2, Facebook, Instagram, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { toast } from "sonner";
 
 import { CONTACT_DETAILS } from "@/constants";
+import { regions } from "@/data/regions";
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Group and sort suburbs
+  const allSuburbs = useMemo(() => {
+    return regions.map((region) => ({
+      regionName: region.name,
+      suburbs: [...region.suburbs].sort((a, b) => a.name.localeCompare(b.name)),
+    }));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,6 +30,7 @@ const Contact = () => {
       lastName: formData.get("lastName"),
       email: formData.get("email"),
       phone: formData.get("phone"),
+      suburb: formData.get("suburb"),
       projectType: formData.get("projectType"),
       message: formData.get("message"),
     };
@@ -170,12 +180,32 @@ const Contact = () => {
                     className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow disabled:opacity-50"
                   />
                   <select
-                    name="projectType"
-                    className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow disabled:opacity-50"
+                    name="suburb"
+                    required
+                    className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow disabled:opacity-50 invalid:text-muted-foreground"
                     defaultValue=""
                     disabled={isSubmitting}
                   >
-                    <option value="" disabled>Type of Project</option>
+                    <option value="" disabled className="text-muted-foreground">Select Your Suburb</option>
+                    {allSuburbs.map((region) => (
+                      <optgroup key={region.regionName} label={region.regionName}>
+                        {region.suburbs.map((suburb) => (
+                          <option key={suburb.slug} value={suburb.name}>
+                            {suburb.name}
+                          </option>
+                        ))}
+                      </optgroup>
+                    ))}
+                    <option value="Other">Other / Not Listed</option>
+                  </select>
+                  <select
+                    name="projectType"
+                    required
+                    className="px-4 py-3 text-sm bg-background border border-border rounded-sm text-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-shadow disabled:opacity-50 invalid:text-muted-foreground"
+                    defaultValue=""
+                    disabled={isSubmitting}
+                  >
+                    <option value="" disabled className="text-muted-foreground">Type of Project</option>
                     <option value="Full Bathroom Renovation">Full Bathroom Renovation</option>
                     <option value="Ensuite Renovation">Ensuite Renovation</option>
                     <option value="Shower Replacement">Shower Replacement</option>

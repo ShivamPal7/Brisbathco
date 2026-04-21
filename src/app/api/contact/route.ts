@@ -4,10 +4,10 @@ import nodemailer from 'nodemailer';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { firstName, lastName, email, phone, projectType, message } = body;
+    const { firstName, lastName, email, phone, suburb, projectType, message } = body;
 
     // Validate request body
-    if (!firstName || !lastName || !email || !phone) {
+    if (!firstName || !lastName || !email || !phone || !suburb) {
       return NextResponse.json(
         { message: 'Missing required fields' },
         { status: 400 }
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       from: process.env.SMTP_FROM || '"Brisbane Bath Oasis" <noreply@brisbathco.com.au>', // sender address
       to: process.env.CONTACT_EMAIL || 'info@brisbathco.com.au', // list of receivers (the business owner)
       replyTo: email,
-      subject: `New Lead: ${projectType || 'General Inquiry'} from ${firstName} ${lastName}`,
+      subject: `New Lead: ${projectType || 'General Inquiry'} from ${firstName} ${lastName} (${suburb})`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -63,6 +63,10 @@ export async function POST(request: Request) {
                 <tr>
                   <td style="padding: 12px 0; border-bottom: 1px solid #f5f5f4; color: #78716c; font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Phone</td>
                   <td style="padding: 12px 0; border-bottom: 1px solid #f5f5f4; color: #1c1917; font-size: 16px;"><a href="tel:${phone}" style="color: #bd6b33; text-decoration: none; font-weight: 500;">${phone}</a></td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #f5f5f4; color: #78716c; font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Suburb</td>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #f5f5f4; color: #1c1917; font-size: 16px;"><strong>${suburb}</strong></td>
                 </tr>
                 <tr>
                   <td style="padding: 12px 0; border-bottom: 1px solid #f5f5f4; color: #78716c; font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Project Type</td>
